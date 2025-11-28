@@ -1,0 +1,21 @@
+.home-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 40px;
+  margin: 0;
+  text-align: center;
+}
+
+.home-title {
+     font-size: 32px; color: white; margin-bottom: 10px;
+     } 
+.home-subtitle {
+     font-size: 18px; color: #e0cac4; margin-bottom: 20px; 
+} 
+.home-banner {
+  width: 40%;
+  border-radius: 15px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
