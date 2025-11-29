@@ -1,0 +1,74 @@
+/* Force the login page to take the full screen */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page background */
+/* Force the login page to take the full screen and override parent containers */
+.login-page {
+  position: fixed;
+  inset: 0;                     /* shorthand for top:0; right:0; bottom:0; left:0; */
+  display: flex;
+  justify-content: center;      /* center horizontally */
+  align-items: center;          /* center vertically */
+  background: white;
+  z-index: 9999;                /* ensure it sits above other layout elements */
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Brown box */
+.login-box {
+  background: #8b5a2b;
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+
+/* Title */
+.login-box h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Input styling */
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;  /* spacing between inputs */
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* Button */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  color: #8b5a2b;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  opacity: 0.9;
+}
+
+/* Error message */
+.error {
+  background: #ffdddd;
+  padding: 8px;
+  margin-bottom: 12px;
+  color: #b30000;
+  border-radius: 5px;
+}
