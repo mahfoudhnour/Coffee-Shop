@@ -1,30 +1,46 @@
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartProvider";
 
+// Client components
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 
+// Admin pages
+import AdminLayout from "./pages/admin/layout/AdminLayout";
+import Dashboard from "./pages/admin/dashboard";
+import ListeProduits from "./pages/admin/listeProduits";
+import Orders from "./pages/admin/orders";
+import BaristaManagement from "./pages/admin/BaristaManagement";
+
+// Barista page
+import BaristaDashboard from "./pages/barista/BaristaDashboard";
+
 function App() {
   return (
-    // Fournit le contexte global du panier à toute l’application
     <CartProvider>
-
-      {/* Définition de toutes les routes de l’application */}
       <Routes>
-
-        {/*
-          Route parente utilisant <Layout />
-          Le layout contient : Navbar + Footer + <Outlet />
-          Toutes les routes enfants ci-dessous seront affichées dans le <Outlet />.
-        */}
+        
+        {/* Layout principal pour le CLIENT */}
         <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
 
-          {/* Pages principales */}
-          <Route path="/" element={<Home />} />              {/* Page d’accueil */}
-          <Route path="/products" element={<Products />} />   {/* Liste des produits */}
-          <Route path="/cart" element={<Cart />} />           {/* Panier */}
+          {/* ADMIN LAYOUT → contient le sidebar + Outlet */}
+          <Route path="/admin" element={<AdminLayout />}>
+            {/* Dashboard par défaut */}
+            <Route index element={<Dashboard />} />
+
+            {/* Autres pages admin */}
+            <Route path="liste-produits" element={<ListeProduits />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="barista-management" element={<BaristaManagement />} />
+          </Route>
+
+          {/* BARISTA */}
+          <Route path="/BaristaDashboard" element={<BaristaDashboard />} />
 
         </Route>
 

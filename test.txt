@@ -1,0 +1,37 @@
+localStorage.setItem("products", JSON.stringify([
+  { id: 1, name: "Espresso", price: 3.5, category: "café" },
+  { id: 2, name: "Cappuccino", price: 4.0, category: "café" },
+  { id: 3, name: "Croissant", price: 2.5, category: "pâtisserie" },
+  { id: 4, name: "Jus d'orange", price: 4.2, category: "jus" }
+]));
+
+localStorage.setItem("users", JSON.stringify([
+  { id: 1, name: "Admin", email: "admin@mail.com", role:"admin" },
+  { id: 2, name: "hadhemi", email: "client@mail.com", role:"client" },
+  { id: 3, name: "Barista", email: "barista@mail.com", role:"barista" }
+]));
+
+localStorage.setItem("orders", JSON.stringify([
+  {
+    orderNumber: 101,
+    email: "client@mail.com",
+    date: "2025-01-14",
+    total: 8.0,
+    status: "pending",
+    items: [
+      { id: 1, price: 3.5, qty: 1 },
+      { id: 3, price: 2.5, qty: 1 }
+    ]
+  },
+  {
+    orderNumber: 102,
+    email: "client@mail.com",
+    date: "2025-01-15",
+    total: 12.2,
+    status: "pending",
+    items: [
+      { id: 2, price: 4.0, qty: 2 },
+      { id: 4, price: 4.2, qty: 1 }
+    ]
+  }
+]));

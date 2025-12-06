@@ -1,0 +1,107 @@
+.dashboard {
+  background: #f8f3e9;
+  min-height: 100vh;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.header {
+  background: #3e2723;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  padding: 20px 40px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  padding: 0 40px 20px;
+}
+
+.filters button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background-color: #5d4037;
+  color: white;
+}
+
+.orders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 40px 40px;
+}
+
+.order-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.items {
+  background: #f8f3e9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.total {
+  font-weight: bold;
+  color: #8d6e63;
+}
+
+.no-orders {
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+}
