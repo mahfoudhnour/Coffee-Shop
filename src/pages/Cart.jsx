@@ -29,7 +29,7 @@ function Cart() {
             {/* Informations du produit */}
             <div className="cart-info">
               <h3>{item.name}</h3>
-              <p>Prix : {item.price} €</p>
+              <p>Prix : {item.price} dt</p>
               <p>Quantité : {item.qty}</p>
             </div>
 
@@ -46,7 +46,7 @@ function Cart() {
 
       {/* Résumé et actions globales du panier */}
       <div className="cart-summary">
-        <h3>Total : {total.toFixed(2)} €</h3>
+        <h3>Total : {total.toFixed(2)} dt</h3>
 
         {/* Bouton pour vider entièrement le panier */}
         <button className="clear-btn" onClick={clearCart}>
