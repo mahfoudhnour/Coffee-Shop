@@ -32,7 +32,6 @@ export default function BaristaDashboard() {
     saveOrders(updated);
     setOrders(updated);
   };
-
   // Filtrage
   const filteredOrders =
     filter === "all"
