@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
-import productsData from "../data/products.json";
 import "./Products.css";
+import { getProducts } from "../utils/storage";
 
 function Products() {
   const { addToCart } = useContext(CartContext);
@@ -10,7 +10,7 @@ function Products() {
   const [search, setSearch] = useState("");
   const [addedId, setAddedId] = useState(null); 
   const [modalImage, setModalImage] = useState(null); // image du modal
-
+  const productsData = getProducts(); // returns all products from localStorage
   // Filtrage par catégorie
   let filteredProducts = filter === "all"
     ? productsData

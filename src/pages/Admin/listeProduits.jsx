@@ -148,7 +148,7 @@ export default function ProductList() {
       </button>
 
       {/* TABLE */}
-      <table style={{ width: "100%", background: "white", borderRadius: "10px" }}>
+      <table style={{ width: "100%", background: "white", borderRadius: "10px" ,color:"black"}}>
         <thead>
           <tr>
             <th>ID</th>

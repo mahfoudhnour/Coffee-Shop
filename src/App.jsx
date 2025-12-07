@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartProvider";
-
 // Client components
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -16,7 +15,9 @@ import BaristaManagement from "./pages/admin/BaristaManagement";
 
 // Barista page
 import BaristaDashboard from "./pages/barista/BaristaDashboard";
-
+import { initProducts } from "./utils/storage";
+// Products Initialization
+initProducts();
 function App() {
   return (
     <CartProvider>
