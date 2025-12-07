@@ -212,6 +212,7 @@ const products = [
      "category": "pâtisserie" 
     }
 ]
+// Products Initilization function
 export function initProducts(){
   localStorage.setItem("products",JSON.stringify(products));
 }
