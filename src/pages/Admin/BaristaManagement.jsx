@@ -64,7 +64,7 @@ export default function BaristaManagement() {
     <div style={{ padding: "40px" }}>
       <h2>Barista Management</h2>
 
-      <button onClick={() => openModal()} style={{ marginBottom: "20px" }}>
+      <button onClick={() => openModal()} style={{ marginBottom: "20px" ,display:"flex" , gap:"5px"}}>
         <Plus /> Add Barista
       </button>
 
@@ -78,7 +78,7 @@ export default function BaristaManagement() {
         <tbody>
           {baristas.length === 0 && (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
+              <td colSpan="5" style={{ textAlign: "center", padding: "20px" , color: "#777"}}>
                 No baristas found.
               </td>
             </tr>

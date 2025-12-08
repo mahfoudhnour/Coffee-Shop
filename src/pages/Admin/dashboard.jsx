@@ -34,11 +34,11 @@ export default function AdminDashboard() {
   const completed = orders.filter((o) => o.status === "Completed").length;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", color:"black" }}>
       <h2>Admin Dashboard</h2>
 
       {/* Cards */}
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
+      <div style={{ display: "flex", gap: "20px", marginTop: "20px" , color:"black"}}>
         
         {/* Produits */}
         <div style={card}>
