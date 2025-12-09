@@ -5,14 +5,12 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
-
 // Admin pages
 import AdminLayout from "./pages/admin/layout/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
 import ListeProduits from "./pages/admin/listeProduits";
 import Orders from "./pages/admin/orders";
 import BaristaManagement from "./pages/admin/BaristaManagement";
-
 // Barista page
 import BaristaDashboard from "./pages/barista/BaristaDashboard";
 import { initProducts } from "./utils/storage";
@@ -22,7 +20,6 @@ function App() {
   return (
     <CartProvider>
       <Routes>
-        
         {/* Layout principal pour le CLIENT */}
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
