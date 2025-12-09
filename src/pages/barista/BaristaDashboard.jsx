@@ -1,7 +1,8 @@
-// BaristaDashboard.jsx
-import React, { useState, useEffect } from "react";
-import { Coffee, Clock, CheckCircle, Package } from "lucide-react";
+import React, { useState, useEffect, useContext } from "react";
+import { Coffee, Clock, CheckCircle, Package, LogOut } from "lucide-react";
 import { getOrders, saveOrders } from "../../utils/storage.js";
+import { AuthContext } from "../../context/AuthContext"; // import AuthContext
+import { useNavigate } from "react-router-dom";          // import navigate
 import "./BaristaDashboard.css";
 
 const statusColors = {
@@ -19,37 +20,64 @@ const statusIcons = {
 export default function BaristaDashboard() {
   const [orders, setOrders] = useState([]);
   const [filter, setFilter] = useState("all");
-  // Charger les commandes au démarrage
+
+  const { logout } = useContext(AuthContext); // get logout function
+  const navigate = useNavigate();             // to redirect to homepage
+
+  // Logout handler
+  const handleLogout = () => {
+    logout();
+    navigate("/"); // redirect to home page
+  };
+
   useEffect(() => {
     setOrders(getOrders());
   }, []);
-  // Sauvegarder + mettre à jour l'état
+
   const updateStatus = (id, newStatus) => {
     const updated = orders.map((o) =>
       o.id === id ? { ...o, status: newStatus } : o
     );
-
     saveOrders(updated);
     setOrders(updated);
   };
-  // Filtrage
-  const filteredOrders =
-    filter === "all"
-      ? orders
-      : orders.filter((order) => order.status === filter);
 
-  const countByStatus = (status) =>
-    orders.filter((o) => o.status === status).length;
+  const filteredOrders =
+    filter === "all" ? orders : orders.filter((order) => order.status === filter);
+
+  const countByStatus = (status) => orders.filter((o) => o.status === status).length;
 
   return (
     <div className="dashboard">
+      {/* HEADER */}
       <header className="header">
         <h1>
           <Coffee size={28} /> Barista Dashboard
         </h1>
-        <div>{new Date().toLocaleDateString("en-US")}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <div>{new Date().toLocaleDateString("en-US")}</div>
+
+          {/* LOGOUT BUTTON */}
+          <button
+            onClick={handleLogout}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "#e74c3c",
+              color: "white",
+              border: "none",
+              padding: "8px 12px",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
+          >
+            <LogOut size={16} /> Logout
+          </button>
+        </div>
       </header>
 
+      {/* STATS */}
       <section className="stats">
         <div className="stat" onClick={() => setFilter("Pending")}>
           <Clock size={24} color="#e67e22" /> Pending: {countByStatus("Pending")}
@@ -65,35 +93,25 @@ export default function BaristaDashboard() {
         </div>
       </section>
 
+      {/* FILTER BUTTONS */}
       <section className="filters">
         <button className={filter === "all" ? "active" : ""} onClick={() => setFilter("all")}>
           All Orders
         </button>
-        <button
-          className={filter === "Pending" ? "active" : ""}
-          onClick={() => setFilter("Pending")}
-        >
+        <button className={filter === "Pending" ? "active" : ""} onClick={() => setFilter("Pending")}>
           Pending
         </button>
-        <button
-          className={filter === "Preparing" ? "active" : ""}
-          onClick={() => setFilter("Preparing")}
-        >
+        <button className={filter === "Preparing" ? "active" : ""} onClick={() => setFilter("Preparing")}>
           Preparing
         </button>
-        <button
-          className={filter === "Completed" ? "active" : ""}
-          onClick={() => setFilter("Completed")}
-        >
+        <button className={filter === "Completed" ? "active" : ""} onClick={() => setFilter("Completed")}>
           Completed
         </button>
       </section>
 
+      {/* ORDERS */}
       <section className="orders">
-        {filteredOrders.length === 0 && (
-          <div className="no-orders">No Orders</div>
-        )}
-
+        {filteredOrders.length === 0 && <div className="no-orders">No Orders</div>}
         {filteredOrders.map((order) => (
           <div key={order.id} className="order-card">
             <div className="order-header">
@@ -102,13 +120,9 @@ export default function BaristaDashboard() {
                 <div className="customer">{order.email}</div>
               </div>
               <div className="time">
-                {new Date(order.date).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
+                {new Date(order.date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
               </div>
             </div>
-
             <div className="items">
               {order.items?.map((item, idx) => (
                 <div key={idx}>
@@ -116,31 +130,15 @@ export default function BaristaDashboard() {
                 </div>
               ))}
             </div>
-
-            <div
-              className="status"
-              style={{ backgroundColor: statusColors[order.status] }}
-            >
+            <div className="status" style={{ backgroundColor: statusColors[order.status] }}>
               {statusIcons[order.status]} {order.status}
             </div>
-
             <div className="actions">
-              {order.status === "Pending" && (
-                <button onClick={() => updateStatus(order.id, "Preparing")}>
-                  Start
-                </button>
-              )}
-              {order.status === "Preparing" && (
-                <button onClick={() => updateStatus(order.id, "Completed")}>
-                  Complete
-                </button>
-              )}
+              {order.status === "Pending" && <button onClick={() => updateStatus(order.id, "Preparing")}>Start</button>}
+              {order.status === "Preparing" && <button onClick={() => updateStatus(order.id, "Completed")}>Complete</button>}
               {order.status === "Completed" && <div>Ready</div>}
             </div>
-
-            <div className="total">
-              Total: {order.total?.toFixed(2)} dt
-            </div>
+            <div className="total">Total: {order.total?.toFixed(2)} dt</div>
           </div>
         ))}
       </section>

@@ -1,36 +1,38 @@
 import "./Navbar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
-// The main navigation bar displayed across all pages (inside Layout)
 export default function Navbar() {
+  const { currentUser } = useContext(AuthContext);
+  const location = useLocation(); // get current route
+
   return (
     <nav className="navbar">
-      
-      {/* App logo / brand */}
       <div className="logo">☕ Coffee Shop</div>
 
-      {/* Navigation links using NavLink for automatic "active" styling */}
       <ul className="nav-links">
-        {/* NavLink applies an "active" class when the route matches */}
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/products">Products</NavLink></li>
         <li><NavLink to="/cart">Cart</NavLink></li>
-        <li>      
-          <NavLink 
-  to="/login"
-  style={{
-    background: '#e74c3c',
-    padding: '8px 16px',
-    borderRadius: '6px',
-    fontWeight: 'bold'
-  }}
->
-  login
-</NavLink>
 
-</li>
+        {/* Only show login button on homepage and if user is not logged in */}
+        {!currentUser && location.pathname === "/" && (
+          <li>
+            <NavLink 
+              to="/login"
+              style={{
+                background: '#e74c3c',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                fontWeight: 'bold'
+              }}
+            >
+              Login
+            </NavLink>
+          </li>
+        )}
       </ul>
-
     </nav>
   );
 }
