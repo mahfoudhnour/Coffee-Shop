@@ -4,17 +4,43 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Load user from localStorage on page load
+ 
   useEffect(() => {
     const savedUser = localStorage.getItem("currentUser");
-    if (savedUser) setCurrentUser(JSON.parse(savedUser));
+    if (savedUser) {
+      const user = JSON.parse(savedUser);
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+    }
   }, []);
 
   const login = (email, password) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
+    
+   
+    const hardcodedUsers = [
+      {
+        email: "admin@cafemiranda.com",
+        password: "admin123",
+        name: "Admin User",
+        role: "admin",
+        id: 1
+      },
+      {
+        email: "barista@cafemiranda.com",
+        password: "barista123",
+        name: "Barista User",
+        role: "barista",
+        id: 2
+      }
+    ];
 
-    const foundUser = users.find(
+  
+    const allUsers = [...hardcodedUsers, ...users];
+
+    const foundUser = allUsers.find(
       (u) => u.email === email && u.password === password
     );
 
@@ -22,16 +48,23 @@ export const AuthProvider = ({ children }) => {
 
     localStorage.setItem("currentUser", JSON.stringify(foundUser));
     setCurrentUser(foundUser);
+    setIsAuthenticated(true);
     return true;
   };
 
   const logout = () => {
     localStorage.removeItem("currentUser");
     setCurrentUser(null);
+    setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
+    <AuthContext.Provider value={{ 
+      currentUser, 
+      isAuthenticated,
+      login, 
+      logout 
+    }}>
       {children}
     </AuthContext.Provider>
   );

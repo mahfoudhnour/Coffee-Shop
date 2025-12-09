@@ -1,52 +1,65 @@
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartProvider";
-// Client components
+import { AuthProvider } from "./context/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { initProducts } from "./utils/storage";
+
+
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
+import Login from "./pages/Login"; // Add Login page
 
-// Admin pages
+
 import AdminLayout from "./pages/admin/layout/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
 import ListeProduits from "./pages/admin/listeProduits";
 import Orders from "./pages/admin/orders";
 import BaristaManagement from "./pages/admin/BaristaManagement";
 
-// Barista page
+
 import BaristaDashboard from "./pages/barista/BaristaDashboard";
-import { initProducts } from "./utils/storage";
-// Products Initialization
+
+
 initProducts();
+
 function App() {
   return (
-    <CartProvider>
-      <Routes>
+    <AuthProvider>
+      <CartProvider>
+        <Routes>
+         
+          <Route path="/login" element={<Login />} />
+          
         
-        {/* Layout principal pour le CLIENT */}
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
 
-          {/* ADMIN LAYOUT → contient le sidebar + Outlet */}
-          <Route path="/admin" element={<AdminLayout />}>
-            {/* Dashboard par défaut */}
-            <Route index element={<Dashboard />} />
+        
+            <Route path="/admin" element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminLayout />
+              </ProtectedRoute>
+            }>
+              <Route index element={<Dashboard />} />
+              <Route path="liste-produits" element={<ListeProduits />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="barista-management" element={<BaristaManagement />} />
+            </Route>
 
-            {/* Autres pages admin */}
-            <Route path="liste-produits" element={<ListeProduits />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="barista-management" element={<BaristaManagement />} />
+       
+            <Route path="/BaristaDashboard" element={
+              <ProtectedRoute requiredRole="barista">
+                <BaristaDashboard />
+              </ProtectedRoute>
+            } />
           </Route>
-
-          {/* BARISTA */}
-          <Route path="/BaristaDashboard" element={<BaristaDashboard />} />
-
-        </Route>
-
-      </Routes>
-    </CartProvider>
+        </Routes>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
