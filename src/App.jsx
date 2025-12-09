@@ -1,12 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartProvider";
 
-// Client components
+// Client 
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
-
 // Admin pages
 import AdminLayout from "./pages/admin/layout/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";

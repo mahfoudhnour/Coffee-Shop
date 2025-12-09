@@ -1,5 +1,5 @@
 //  lire et écrire dans localStorage
-// PRODUCTS
+// PRODUCTS (hedhi li bch taawedh .json statique twalli t recuperer ml local storage)
 export function getProducts() {
   return JSON.parse(localStorage.getItem("products") || "[]");
 }

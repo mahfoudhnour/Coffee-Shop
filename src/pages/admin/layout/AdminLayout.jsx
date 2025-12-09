@@ -3,12 +3,12 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Package, ShoppingCart, Coffee } from 'lucide-react';
 
 const menuItems = [
-  { text: 'Dashboard', icon: <LayoutDashboard />, path: '/admin' },
+  { text: 'Dashboard', icon: <LayoutDashboard />, path: '/admin' },//nafshom les pths li f app.jsx mtaa rooting c'est lui qui dirige vraiment React Router vers la bonne page.
   { text: 'Liste Produits', icon: <Package />, path: '/admin/liste-produits' },
   { text: 'Orders', icon: <ShoppingCart />, path: '/admin/Orders' },
   { text: 'Barista Management', icon: <Coffee />, path: '/admin/barista-management' },
 ];
-
+//compsant principale
 export default function AdminLayout() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
@@ -16,11 +16,11 @@ export default function AdminLayout() {
       {/* Sidebar */}
       <div style={{ width: '220px', background: '#5d4037', color: 'white', padding: '20px' }}>
         <h2 style={{ marginBottom: '40px', textAlign: 'center' }}>☕ Coffee Admin</h2>
-
-        {menuItems.map(item => (
-          <NavLink
-            key={item.text}
-            to={item.path}
+      {/*Créer automatiquement les boutons du menu admin*/}
+        {menuItems.map(item => (//map() = boucle transforme liste en composants react
+          <NavLink//composant mta3 reactrouter (Crée un lien navigable+compare automatiquement son prop to avec l’URL actuelle)
+            key={item.text}//id mta3o khdha text khatro unique fel case hedhi
+            to={item.path}//ki nenzel hezni lil path hedha
             style={({ isActive }) => ({
               display: 'flex',
               alignItems: 'center',

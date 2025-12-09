@@ -1,4 +1,3 @@
-// BaristaDashboard.jsx
 import React, { useState, useEffect } from "react";
 import { Coffee, Clock, CheckCircle, Package } from "lucide-react";
 import { getOrders, saveOrders } from "../../utils/storage.js";

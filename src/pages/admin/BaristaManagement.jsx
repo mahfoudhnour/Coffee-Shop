@@ -5,26 +5,19 @@ import { getBaristas, saveBaristas } from "../../utils/storage.js";
 
 
 export default function BaristaManagement() {
-
-  // State des baristas (chargés depuis localStorage)
   const [baristas, setBaristas] = useState([]);
-
-  // Modal + Form
   const [showModal, setShowModal] = useState(false);
   const [editingBarista, setEditingBarista] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", status: "Active" });
-
-  // Charger les baristas une seule fois au démarrage
+  //lit les baristas depuis localStorage marra barka ki ytcharja l compsant w ysetih f bariste 
   useEffect(() => {
     setBaristas(getBaristas());
   }, []);
-
-  // Sauvegarder dans localStorage à chaque modification
+  //ici on On sauvegarde la nouvelle version dans localStorage + n met à jour l’état de React
   function saveToStorage(updated) {
     saveBaristas(updated);
     setBaristas(updated);
   }
-
   // Ouvrir modal pour ajouter ou modifier
   function openModal(barista = null) {
     setEditingBarista(barista);
