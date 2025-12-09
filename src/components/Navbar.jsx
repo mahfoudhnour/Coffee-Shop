@@ -1,6 +1,5 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-
 // The main navigation bar displayed across all pages (inside Layout)
 export default function Navbar() {
   return (

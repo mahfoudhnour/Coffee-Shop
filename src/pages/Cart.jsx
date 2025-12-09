@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 import "./Cart.css";
 
 function Cart() {
@@ -52,6 +53,24 @@ function Cart() {
         <button className="clear-btn" onClick={clearCart}>
           Empty the shopping cart
         </button>
+      </div>
+      {/* Résumé et actions globales du panier */}
+      <div className="cart-summary">
+        <h3>Total : {total.toFixed(2)} €</h3>
+
+        {/* Bouton pour vider entièrement le panier */}
+        <button className="clear-btn" onClick={clearCart}>
+          Empty the shopping cart
+        </button>
+
+        {/* Bouton pour aller vers la page de commande */}
+        {cart.length > 0 && (
+          <Link to="/checkout">
+            <button className="checkout-btn" style={{ marginLeft: "1rem" }}>
+              Passer la commande
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

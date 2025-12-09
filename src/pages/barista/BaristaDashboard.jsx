@@ -27,7 +27,6 @@ export default function BaristaDashboard() {
     const updated = orders.map((o) =>
       o.id === id ? { ...o, status: newStatus } : o
     );
-
     saveOrders(updated);
     setOrders(updated);
   };
@@ -39,7 +38,6 @@ export default function BaristaDashboard() {
 
   const countByStatus = (status) =>
     orders.filter((o) => o.status === status).length;
-
   return (
     <div className="dashboard">
       <header className="header">
@@ -48,7 +46,6 @@ export default function BaristaDashboard() {
         </h1>
         <div>{new Date().toLocaleDateString("en-US")}</div>
       </header>
-
       <section className="stats">
         <div className="stat" onClick={() => setFilter("Pending")}>
           <Clock size={24} color="#e67e22" /> Pending: {countByStatus("Pending")}
@@ -63,7 +60,6 @@ export default function BaristaDashboard() {
           <Package size={24} /> Total: {orders.length}
         </div>
       </section>
-
       <section className="filters">
         <button className={filter === "all" ? "active" : ""} onClick={() => setFilter("all")}>
           All Orders

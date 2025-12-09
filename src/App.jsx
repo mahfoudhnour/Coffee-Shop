@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import AdminLayout from "./pages/admin/layout/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
 import ListeProduits from "./pages/admin/listeProduits";
+import Checkout from "./pages/checkout";
 import Orders from "./pages/admin/orders";
 import BaristaManagement from "./pages/admin/BaristaManagement";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout/>}/>
 
           {/* ADMIN LAYOUT → contient le sidebar + Outlet */}
           <Route path="/admin" element={<AdminLayout />}>

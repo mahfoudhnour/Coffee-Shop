@@ -1,16 +1,45 @@
+// =====================
+// PRODUCTS
+// =====================
 localStorage.setItem("products", JSON.stringify([
   { id: 1, name: "Espresso", price: 3.5, category: "café" },
   { id: 2, name: "Cappuccino", price: 4.0, category: "café" },
-  { id: 3, name: "Croissant", price: 2.5, category: "pâtisserie" },
-  { id: 4, name: "Jus d'orange", price: 4.2, category: "jus" }
+  { id: 3, name: "Latte Macchiato", price: 4.5, category: "café" },
+  { id: 4, name: "Mocha", price: 5.0, category: "café" },
+
+  { id: 5, name: "Croissant", price: 2.5, category: "pâtisserie" },
+  { id: 6, name: "Pain au chocolat", price: 3.0, category: "pâtisserie" },
+  { id: 7, name: "Muffin", price: 3.2, category: "pâtisserie" },
+
+  { id: 8, name: "Jus d'orange", price: 4.2, category: "jus" },
+  { id: 9, name: "Jus de fraise", price: 4.5, category: "jus" },
+  { id: 10, name: "Smoothie banane", price: 5.5, category: "jus" }
 ]));
 
+
+// =====================
+// USERS
+// =====================
 localStorage.setItem("users", JSON.stringify([
-  { id: 1, name: "Admin", email: "admin@mail.com", role:"admin" },
-  { id: 2, name: "hadhemi", email: "client@mail.com", role:"client" },
-  { id: 3, name: "Barista", email: "barista@mail.com", role:"barista" }
+  { id: 1, name: "Admin", email: "admin@mail.com", password: "admin123", role: "admin" },
+  { id: 2, name: "Hadhemi", email: "client@mail.com", password: "client123", role: "client" },
+  { id: 3, name: "Barista", email: "barista@mail.com", password: "barista123", role: "barista" }
 ]));
 
+
+// =====================
+// BARISTAS
+// =====================
+localStorage.setItem("baristas", JSON.stringify([
+  { id: 1, name: "Sami", shift: "morning" },
+  { id: 2, name: "Mouna", shift: "afternoon" },
+  { id: 3, name: "Yassine", shift: "night" }
+]));
+
+
+// =====================
+// ORDERS
+// =====================
 localStorage.setItem("orders", JSON.stringify([
   {
     orderNumber: 101,
@@ -19,8 +48,8 @@ localStorage.setItem("orders", JSON.stringify([
     total: 8.0,
     status: "pending",
     items: [
-      { id: 1, price: 3.5, qty: 1 },
-      { id: 3, price: 2.5, qty: 1 }
+      { id: 1, price: 3.5, qty: 1 }, // Espresso
+      { id: 5, price: 2.5, qty: 1 }  // Croissant
     ]
   },
   {
@@ -28,10 +57,22 @@ localStorage.setItem("orders", JSON.stringify([
     email: "client@mail.com",
     date: "2025-01-15",
     total: 12.2,
-    status: "pending",
+    status: "preparing",
     items: [
-      { id: 2, price: 4.0, qty: 2 },
-      { id: 4, price: 4.2, qty: 1 }
+      { id: 2, price: 4.0, qty: 2 }, // Cappuccino x2
+      { id: 8, price: 4.2, qty: 1 }  // Jus d'orange
+    ]
+  },
+  {
+    orderNumber: 103,
+    email: "client@mail.com",
+    date: "2025-01-16",
+    total: 9.7,
+    status: "completed",
+    items: [
+      { id: 3, price: 4.5, qty: 1 }, // Latte
+      { id: 6, price: 3.0, qty: 1 }, // Pain au chocolat
+      { id: 5, price: 2.5, qty: 1 }  // Croissant
     ]
   }
 ]));
