@@ -14,6 +14,20 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    // -----------------------------
+    // VALIDATION CONTROLS
+    // -----------------------------
+    if (!email.trim() || !password.trim()) {
+      setError("All fields are required.");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      setError("Email must contain '@'.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -25,19 +39,18 @@ export default function Login() {
         return;
       }
 
-    
       const savedUser = localStorage.getItem("currentUser");
       const user = JSON.parse(savedUser);
 
-      // Redirect based on role
+      // ROLE REDIRECTION
       if (user.role === "admin") {
         navigate("/admin");
       } else if (user.role === "barista") {
         navigate("/BaristaDashboard");
       } else {
-        // Default user (customer)
         navigate("/");
       }
+
     } catch (err) {
       setError("An error occurred during login");
     } finally {
@@ -49,7 +62,7 @@ export default function Login() {
     <div className="login-page">
       <div className="login-box">
         <h2>Login</h2>
-        
+
         {error && <p className="error">{error}</p>}
 
         <form onSubmit={handleSubmit}>
@@ -59,7 +72,6 @@ export default function Login() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
               disabled={loading}
             />
           </div>
@@ -70,7 +82,6 @@ export default function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
               disabled={loading}
             />
           </div>
