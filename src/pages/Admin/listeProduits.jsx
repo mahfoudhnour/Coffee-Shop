@@ -141,9 +141,9 @@ export default function ProductList() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Product Management</h2>
+      <h2 style={{color:"black"}}>Product Management</h2>
 
-      <button onClick={handleAdd} style={{ marginBottom: "20px" }}>
+      <button onClick={handleAdd} style={{ marginBottom: "20px", display:"flex", gap:"5px" }}>
         <Plus /> Add Product
       </button>
 
