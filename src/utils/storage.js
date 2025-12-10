@@ -250,9 +250,9 @@ export function saveUsers(users) {
 }
 //li bech yaaml login ynajm yesthako kn bch yaaml login par session si non yestaaml ken getUsers
 export function getLoggedUser() {
-  return JSON.parse(localStorage.getItem("loggedUser") || "null");
+  return JSON.parse(localStorage.getItem("currentUser") || "null");
 }
 
 export function setLoggedUser(user) {
-  localStorage.setItem("loggedUser", JSON.stringify(user));
+  localStorage.setItem("currentUser", JSON.stringify(user));
 }

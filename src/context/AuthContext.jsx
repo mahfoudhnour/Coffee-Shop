@@ -34,6 +34,13 @@ export const AuthProvider = ({ children }) => {
         name: "Barista User",
         role: "barista",
         id: 2
+      },
+      {
+      "email": "user@cafemiranda.com",
+      "password": "user123",
+      "name": "Regular User",
+      "role": "user",
+      "id": 3
       }
     ];
 

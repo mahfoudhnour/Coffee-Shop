@@ -44,7 +44,7 @@ export default function BaristaDashboard() {
 
   const filteredOrders =
     filter === "all" ? orders : orders.filter((order) => order.status === filter);
-
+  console.log(orders)
   const countByStatus = (status) => orders.filter((o) => o.status === status).length;
 
   return (
@@ -80,13 +80,13 @@ export default function BaristaDashboard() {
       {/* STATS */}
       <section className="stats">
         <div className="stat" onClick={() => setFilter("Pending")}>
-          <Clock size={24} color="#e67e22" /> Pending: {countByStatus("Pending")}
+          <Clock size={24} color="#e67e22" /> Pending: {countByStatus("pending")}
         </div>
         <div className="stat" onClick={() => setFilter("Preparing")}>
-          <Coffee size={24} color="#5d4037" /> Preparing: {countByStatus("Preparing")}
+          <Coffee size={24} color="#5d4037" /> Preparing: {countByStatus("preparing")}
         </div>
         <div className="stat" onClick={() => setFilter("Completed")}>
-          <CheckCircle size={24} color="#689f38" /> Completed: {countByStatus("Completed")}
+          <CheckCircle size={24} color="#689f38" /> Completed: {countByStatus("compeleted")}
         </div>
         <div className="stat" onClick={() => setFilter("all")}>
           <Package size={24} /> Total: {orders.length}

@@ -44,18 +44,18 @@ export default function Orders() {
   // Status color
   const getStatusStyle = (status) => {
     switch (status) {
-      case "Pending":
+      case "pending":
         return { backgroundColor: "#ff9800" };
-      case "Preparing":
+      case "preparing":
         return { backgroundColor: "#03a9f4" };
-      case "Completed":
+      case "completed":
         return { backgroundColor: "#4caf50" };
       default:
         return { backgroundColor: "#999" };
     }
   };
   return (
-    <div style={{ fontFamily: "'Poppins', sans-serif", padding: "20px" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", padding: "20px" , color:"black"}}>
       <h2 style={{ marginBottom: "20px", color: "black" }}>Orders Management</h2>
       {/* Filters */}
       <div style={{ display: "flex", gap: "20px", marginBottom: "20px", alignItems: "center" }}>
@@ -128,7 +128,7 @@ export default function Orders() {
 
                   <td style={{ padding: "12px", borderBottom: "1px solid #eee", fontSize: "14px" }}>
                     <select
-                      style={{ padding: "6px 8px", borderRadius: "6px", border: "1px solid #ccc", background: "white" }}
+                      style={{ padding: "6px 8px", borderRadius: "6px", border: "1px solid #ccc", background: "white" ,color:"black"}}
                       value={o.status}
                       onChange={(e) =>
                         updateStatus(o.orderNumber, e.target.value)

@@ -17,7 +17,7 @@ export default function Checkout() {
   }
 
   const { cart, clearCart, total } = cartCtx;
-
+  const logged = getLoggedUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
