@@ -11,17 +11,20 @@ function Products() {
   const [addedId, setAddedId] = useState(null); 
   const [modalImage, setModalImage] = useState(null); 
   const productsData = getProducts(); // returns all products from localStorage
+  // Filtrage par catégorie
   let filteredProducts = filter === "all"
     ? productsData
     : productsData.filter((p) => p.category === filter);
+  // Filtrage par recherche
   if (search.trim() !== "") {
     filteredProducts = filteredProducts.filter((p) =>
       p.name.toLowerCase().includes(search.toLowerCase())
     );
   }
+  // Tri par prix
   if (sort === "asc") filteredProducts.sort((a, b) => a.price - b.price);
   if (sort === "desc") filteredProducts.sort((a, b) => b.price - a.price);
-  // Ajouter au panier 
+  // Ajouter au panier avec feedback
   const handleAddToCart = (product) => {
     addToCart(product);
     setAddedId(product.id);
@@ -30,6 +33,7 @@ function Products() {
   return (
     <div className="products-container">
       <h2>Our Products</h2>
+      {/* Contrôles */}
       <div className="products-controls">
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
           <option value="all">ALL</option>

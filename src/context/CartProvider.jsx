@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CartContext } from "./CartContext";
 
-// permet à tous les composants d’accéder au panier.
+// Composant Provider pour envelopper l'app
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
@@ -26,10 +26,16 @@ export function CartProvider({ children }) {
       }
     });
   };
+
+  // Supprimer un produit
   const removeFromCart = (productId) => {
     setCart((prev) => prev.filter((item) => item.id !== productId));
   };
+
+  // Vider le panier
   const clearCart = () => setCart([]);
+
+  // Calcul du total
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   return (
